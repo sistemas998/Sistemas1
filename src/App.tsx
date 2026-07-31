@@ -1,11 +1,10 @@
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
+import Login from './components/Login'
 
 function App() {
   return (
     <div
       className="relative w-full min-h-screen"
-      style={{ fontFamily: 'var(--font-body)', color: 'var(--color-text)' }}
+      style={{ fontFamily: 'var(--font-body)', color: 'white' }}
     >
       <video
         className="absolute inset-0 h-full w-full object-cover"
@@ -16,8 +15,13 @@ function App() {
         playsInline
       />
 
-      <Navbar />
-      <Hero />
+      {/* Dark overlay to make card readable */}
+      <div
+        className="absolute inset-0"
+        style={{ background: 'rgba(5, 14, 32, 0.55)' }}
+      />
+
+      <Login />
     </div>
   )
 }
