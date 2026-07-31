@@ -9,7 +9,7 @@ function App() {
     >
       <video
         className="absolute inset-0 h-full w-full object-cover"
-        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260518_003132_8b7edcb6-c64d-4a52-a9ca-879942e122ad.mp4"
+        src="/bg-video.mp4"
         autoPlay
         muted
         loop
