@@ -21,11 +21,11 @@ function Login() {
 
   const inputBase: React.CSSProperties = {
     width: '100%',
-    background: 'rgba(255,255,255,0.06)',
-    border: '1px solid rgba(255,255,255,0.12)',
+    background: '#FDFDFD',
+    border: '1px solid #E4E5E8',
     borderRadius: '12px',
     padding: '14px 14px 14px 44px',
-    color: 'white',
+    color: '#021A3C',
     fontFamily: 'var(--font-body)',
     fontSize: '0.95rem',
     outline: 'none',
@@ -34,8 +34,8 @@ function Login() {
 
   const inputFocused: React.CSSProperties = {
     ...inputBase,
-    border: '1px solid #F4C430',
-    background: 'rgba(244,196,48,0.06)',
+    border: '1px solid #B3CEE7',
+    background: '#DFEEFB',
   }
 
   return (
@@ -47,13 +47,13 @@ function Login() {
         style={{
           width: '100%',
           maxWidth: '420px',
-          background: 'rgba(10, 22, 48, 0.88)',
+          background: '#FDFDFD',
           backdropFilter: 'blur(24px)',
           WebkitBackdropFilter: 'blur(24px)',
           borderRadius: '24px',
-          border: '1px solid rgba(244,196,48,0.2)',
+          border: '1px solid #E4E5E8',
           padding: '40px 36px 36px',
-          boxShadow: '0 32px 80px rgba(0,0,0,0.45)',
+          boxShadow: '0 32px 80px rgba(2,26,60,0.12)',
         }}
       >
         {/* Logo */}
@@ -65,7 +65,7 @@ function Login() {
         <div
           style={{
             height: '1px',
-            background: 'linear-gradient(to right, transparent, rgba(244,196,48,0.3), transparent)',
+            background: '#E4E5E8',
             marginBottom: '28px',
           }}
         />
@@ -76,14 +76,14 @@ function Login() {
             style={{
               fontFamily: 'var(--font-heading)',
               fontSize: 'clamp(1.4rem, 4vw, 1.75rem)',
-              color: 'white',
+              color: '#021A3C',
               lineHeight: 1.1,
               marginBottom: '6px',
             }}
           >
             Bienvenido
           </h1>
-          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.875rem', fontFamily: 'var(--font-body)' }}>
+          <p style={{ color: '#5F6F73', fontSize: '0.875rem', fontFamily: 'var(--font-body)' }}>
             Ingresa tus credenciales para continuar
           </p>
         </div>
@@ -100,7 +100,7 @@ function Login() {
                 left: '14px',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                color: focusedField === 'email' ? '#F4C430' : 'rgba(255,255,255,0.4)',
+                color: focusedField === 'email' ? '#021A3C' : '#5F6F73',
                 transition: 'color 0.2s',
                 pointerEvents: 'none',
               }}
@@ -126,7 +126,7 @@ function Login() {
                 left: '14px',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                color: focusedField === 'password' ? '#F4C430' : 'rgba(255,255,255,0.4)',
+                color: focusedField === 'password' ? '#021A3C' : '#5F6F73',
                 transition: 'color 0.2s',
                 pointerEvents: 'none',
               }}
@@ -156,7 +156,7 @@ function Login() {
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
-                color: 'rgba(255,255,255,0.4)',
+                color: '#5F6F73',
                 padding: 0,
                 display: 'flex',
               }}
@@ -171,7 +171,7 @@ function Login() {
             <a
               href="#"
               style={{
-                color: '#F4C430',
+                color: '#021A3C',
                 fontSize: '0.82rem',
                 fontFamily: 'var(--font-body)',
                 textDecoration: 'none',
@@ -190,8 +190,8 @@ function Login() {
             style={{
               marginTop: '4px',
               width: '100%',
-              background: '#F4C430',
-              color: '#0A1630',
+              background: '#DFEEFB',
+              color: '#021A3C',
               border: 'none',
               borderRadius: '12px',
               padding: '15px 24px',
@@ -203,7 +203,7 @@ function Login() {
               alignItems: 'center',
               justifyContent: 'center',
               gap: '10px',
-              boxShadow: '0 4px 20px rgba(244,196,48,0.3)',
+              boxShadow: '0 4px 20px rgba(2,26,60,0.08)',
             }}
           >
             Iniciar Sesión
@@ -216,7 +216,7 @@ function Login() {
           style={{
             marginTop: '24px',
             textAlign: 'center',
-            color: 'rgba(255,255,255,0.35)',
+            color: '#5F6F73',
             fontSize: '0.78rem',
             fontFamily: 'var(--font-body)',
           }}

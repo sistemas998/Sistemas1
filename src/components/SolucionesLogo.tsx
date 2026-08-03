@@ -16,7 +16,7 @@ function SolucionesLogo({ className = '', iconSize = 56, textSize = '1rem' }: So
         aria-hidden="true"
       >
         {/* Gold ring */}
-        <circle cx="28" cy="28" r="27" fill="#F4C430" />
+        <circle cx="28" cy="28" r="27" fill="#FFD100" />
         {/* Dark navy inner circle */}
         <circle cx="28" cy="28" r="21" fill="#1B3B6F" />
         {/* White bold S */}
@@ -37,7 +37,7 @@ function SolucionesLogo({ className = '', iconSize = 56, textSize = '1rem' }: So
       <div className="flex flex-col leading-tight">
         <span
           style={{
-            color: 'white',
+            color: '#021A3C',
             fontFamily: "'Inter', sans-serif",
             fontWeight: 800,
             fontSize: textSize,
@@ -49,7 +49,7 @@ function SolucionesLogo({ className = '', iconSize = 56, textSize = '1rem' }: So
         </span>
         <span
           style={{
-            color: 'white',
+            color: '#021A3C',
             fontFamily: "'Inter', sans-serif",
             fontWeight: 800,
             fontSize: textSize,

@@ -25,3 +25,8 @@ body {
   font-family: var(--font-body);
   color: var(--color-text);
 }
+
+input::placeholder {
+  color: #5F6F73;
+  opacity: 1;
+}
