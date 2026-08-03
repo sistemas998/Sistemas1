@@ -1,13 +1,21 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { Eye, EyeOff, Lock, Mail, ArrowRight } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Eye, EyeOff, Lock, Mail, ArrowRight, AlertCircle } from 'lucide-react'
 import SolucionesLogo from './SolucionesLogo'
+
+const DEMO_USER = {
+  email: 'admin@spc.com',
+  password: 'Demo2026',
+  redirectTo: '/dashboard.html',
+}
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [focusedField, setFocusedField] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
 
   const cardVariant = {
     hidden: { opacity: 0, y: 40, scale: 0.97 },
@@ -38,6 +46,36 @@ function Login() {
     background: '#DFEEFB',
   }
 
+  const inputError: React.CSSProperties = {
+    ...inputBase,
+    border: '1px solid #e05c5c',
+    background: '#fff5f5',
+  }
+
+  function getInputStyle(field: string) {
+    if (error) return field === 'password' ? { ...inputError, paddingRight: '44px' } : inputError
+    if (focusedField === field) return field === 'password' ? { ...inputFocused, paddingRight: '44px' } : inputFocused
+    return field === 'password' ? { ...inputBase, paddingRight: '44px' } : inputBase
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setError(null)
+    setLoading(true)
+
+    setTimeout(() => {
+      if (
+        email.trim().toLowerCase() === DEMO_USER.email &&
+        password === DEMO_USER.password
+      ) {
+        window.location.href = DEMO_USER.redirectTo
+      } else {
+        setLoading(false)
+        setError('Correo o contraseña incorrectos.')
+      }
+    }, 700)
+  }
+
   return (
     <div className="relative z-10 flex min-h-screen w-full items-center justify-center px-4">
       <motion.div
@@ -62,13 +100,7 @@ function Login() {
         </div>
 
         {/* Divider */}
-        <div
-          style={{
-            height: '1px',
-            background: '#E4E5E8',
-            marginBottom: '28px',
-          }}
-        />
+        <div style={{ height: '1px', background: '#E4E5E8', marginBottom: '28px' }} />
 
         {/* Title */}
         <div className="mb-6">
@@ -89,7 +121,7 @@ function Login() {
         </div>
 
         {/* Form */}
-        <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
           {/* Email field */}
           <div style={{ position: 'relative' }}>
@@ -100,7 +132,7 @@ function Login() {
                 left: '14px',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                color: focusedField === 'email' ? '#021A3C' : '#5F6F73',
+                color: error ? '#e05c5c' : focusedField === 'email' ? '#021A3C' : '#5F6F73',
                 transition: 'color 0.2s',
                 pointerEvents: 'none',
               }}
@@ -109,11 +141,12 @@ function Login() {
               type="email"
               placeholder="Correo electrónico"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => { setEmail(e.target.value); setError(null) }}
               onFocus={() => setFocusedField('email')}
               onBlur={() => setFocusedField(null)}
-              style={focusedField === 'email' ? inputFocused : inputBase}
+              style={getInputStyle('email')}
               autoComplete="email"
+              required
             />
           </div>
 
@@ -126,7 +159,7 @@ function Login() {
                 left: '14px',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                color: focusedField === 'password' ? '#021A3C' : '#5F6F73',
+                color: error ? '#e05c5c' : focusedField === 'password' ? '#021A3C' : '#5F6F73',
                 transition: 'color 0.2s',
                 pointerEvents: 'none',
               }}
@@ -135,15 +168,12 @@ function Login() {
               type={showPassword ? 'text' : 'password'}
               placeholder="Contraseña"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => { setPassword(e.target.value); setError(null) }}
               onFocus={() => setFocusedField('password')}
               onBlur={() => setFocusedField(null)}
-              style={
-                focusedField === 'password'
-                  ? { ...inputFocused, paddingRight: '44px' }
-                  : { ...inputBase, paddingRight: '44px' }
-              }
+              style={getInputStyle('password')}
               autoComplete="current-password"
+              required
             />
             <button
               type="button"
@@ -166,6 +196,34 @@ function Login() {
             </button>
           </div>
 
+          {/* Error message */}
+          <AnimatePresence>
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, y: -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.2 }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: '#fff5f5',
+                  border: '1px solid #f5c6c6',
+                  borderRadius: '10px',
+                  padding: '10px 14px',
+                  color: '#b03030',
+                  fontSize: '0.84rem',
+                  fontFamily: 'var(--font-body)',
+                  marginTop: '-4px',
+                }}
+              >
+                <AlertCircle size={15} style={{ flexShrink: 0 }} />
+                {error}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {/* Forgot password */}
           <div className="flex justify-end" style={{ marginTop: '-8px' }}>
             <a
@@ -185,12 +243,13 @@ function Login() {
           {/* Submit button */}
           <motion.button
             type="submit"
-            whileHover={{ scale: 1.03, filter: 'brightness(1.08)' }}
-            whileTap={{ scale: 0.97 }}
+            disabled={loading}
+            whileHover={loading ? {} : { scale: 1.03, filter: 'brightness(1.08)' }}
+            whileTap={loading ? {} : { scale: 0.97 }}
             style={{
               marginTop: '4px',
               width: '100%',
-              background: '#DFEEFB',
+              background: loading ? '#B3CEE7' : '#DFEEFB',
               color: '#021A3C',
               border: 'none',
               borderRadius: '12px',
@@ -198,16 +257,17 @@ function Login() {
               fontFamily: 'var(--font-body)',
               fontWeight: 700,
               fontSize: '0.95rem',
-              cursor: 'pointer',
+              cursor: loading ? 'not-allowed' : 'pointer',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               gap: '10px',
               boxShadow: '0 4px 20px rgba(2,26,60,0.08)',
+              transition: 'background 0.2s',
             }}
           >
-            Iniciar Sesión
-            <ArrowRight size={18} />
+            {loading ? 'Verificando...' : 'Iniciar Sesión'}
+            {!loading && <ArrowRight size={18} />}
           </motion.button>
         </form>
 
