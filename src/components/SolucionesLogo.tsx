@@ -10,28 +10,53 @@ function SolucionesLogo({ className = '', iconSize = 56, textSize = '1rem' }: So
       <svg
         width={iconSize}
         height={iconSize}
-        viewBox="0 0 56 56"
+        viewBox="0 0 100 100"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
       >
-        {/* Gold ring */}
-        <circle cx="28" cy="28" r="27" fill="#FFD100" />
-        {/* Dark navy inner circle */}
-        <circle cx="28" cy="28" r="21" fill="#1B3B6F" />
-        {/* White bold S */}
-        <text
-          x="28"
-          y="37"
-          textAnchor="middle"
-          fill="white"
-          fontSize="26"
-          fontWeight="900"
-          fontFamily="'Arial Black', 'Impact', sans-serif"
-          letterSpacing="-1"
-        >
-          S
-        </text>
+        <defs>
+          <clipPath id="innerCircleClip">
+            <circle cx="50" cy="50" r="39" />
+          </clipPath>
+        </defs>
+
+        {/* Yellow ring — Pantone 109 C #FFD100 */}
+        <circle cx="50" cy="50" r="48" fill="#FFD100" />
+        {/* White inner circle */}
+        <circle cx="50" cy="50" r="40" fill="white" />
+
+        {/* 3-D extruded S clipped to inner circle */}
+        <g clipPath="url(#innerCircleClip)">
+          {/* Back shadow layer 2 — darkest, furthest back */}
+          <text
+            x="55" y="72"
+            textAnchor="middle"
+            fill="#021A3C"
+            fontSize="72"
+            fontWeight="900"
+            fontFamily="Impact, 'Arial Black', 'Franklin Gothic Heavy', sans-serif"
+          >S</text>
+          {/* Back shadow layer 1 — intermediate */}
+          <text
+            x="53" y="71"
+            textAnchor="middle"
+            fill="#021A3C"
+            fontSize="72"
+            fontWeight="900"
+            fontFamily="Impact, 'Arial Black', 'Franklin Gothic Heavy', sans-serif"
+            opacity="0.5"
+          >S</text>
+          {/* Front face — white */}
+          <text
+            x="50" y="69"
+            textAnchor="middle"
+            fill="white"
+            fontSize="72"
+            fontWeight="900"
+            fontFamily="Impact, 'Arial Black', 'Franklin Gothic Heavy', sans-serif"
+          >S</text>
+        </g>
       </svg>
 
       <div className="flex flex-col leading-tight">

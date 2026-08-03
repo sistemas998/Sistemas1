@@ -18,7 +18,7 @@ function App() {
       {/* Dark overlay to make card readable */}
       <div
         className="absolute inset-0"
-        style={{ background: 'rgba(2, 26, 60, 0.18)' }}
+        style={{ background: 'rgba(2, 26, 60, 0.35)' }}
       />
 
       <Login />

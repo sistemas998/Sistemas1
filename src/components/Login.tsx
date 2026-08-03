@@ -46,14 +46,14 @@ function Login() {
         variants={cardVariant}
         style={{
           width: '100%',
-          maxWidth: '420px',
-          background: '#FDFDFD',
-          backdropFilter: 'blur(24px)',
-          WebkitBackdropFilter: 'blur(24px)',
+          maxWidth: '370px',
+          background: 'rgba(253, 253, 253, 0.78)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
           borderRadius: '24px',
           border: '1px solid #E4E5E8',
-          padding: '40px 36px 36px',
-          boxShadow: '0 32px 80px rgba(2,26,60,0.12)',
+          padding: '30px 28px 24px',
+          boxShadow: '0 24px 60px rgba(2,26,60,0.18)',
         }}
       >
         {/* Logo */}
